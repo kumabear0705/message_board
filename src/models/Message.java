@@ -1,5 +1,7 @@
 package models;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,14 +11,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import com.google.protobuf.Timestamp;
-
 @Entity
 @NamedQueries({
     @NamedQuery(
-            name = "getAllMessages",
-            query = "SELECT m FROM Message AS m ORDER BY m.id DESC"
-     )
+        name = "getAllMessages",
+        query = "SELECT m FROM Message AS m ORDER BY m.id DESC"
+    )
 })
 @Table(name = "messages")
 public class Message {
@@ -29,13 +29,13 @@ public class Message {
     private String title;
 
     @Column(name = "content", length = 255, nullable = false)
-    private Timestamp created_at;
+    private String content;
 
     @Column(name = "created_at", nullable = false)
-    private Timestamp createf_at;
+    private Timestamp created_at;
 
-    @Column(name = "update_at", nullable = false)
-    private Timestamp update_at;
+    @Column(name = "updated_at", nullable = false)
+    private Timestamp updated_at;
 
     public Integer getId() {
         return id;
@@ -53,6 +53,14 @@ public class Message {
         this.title = title;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public Timestamp getCreated_at() {
         return created_at;
     }
@@ -61,21 +69,17 @@ public class Message {
         this.created_at = created_at;
     }
 
-    public Timestamp getCreatef_at() {
-        return createf_at;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setCreatef_at(Timestamp createf_at) {
-        this.createf_at = createf_at;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
-    public Timestamp getUpdate_at() {
-        return update_at;
-    }
 
-    public void setUpdate_at(Timestamp update_at) {
-        this.update_at = update_at;
-    }
+
+
 
 
 }
